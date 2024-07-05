@@ -63,12 +63,12 @@ Board = {
         --     {Cell.new(256, 4, 1), nil, nil, nil},
         -- }
         
-        obj.board = {
-            {Cell.new(2, 1, 1), Cell.new(2, 1, 2), Cell.new(4, 1, 3), nil},
-            {nil, nil, nil, nil},
-            {nil, nil, nil, nil},
-            {nil, nil, nil, nil},
-        }
+        -- obj.board = {
+        --     {Cell.new(2, 1, 1), Cell.new(4, 1, 2), Cell.new(8, 1, 3), Cell.new(16, 1, 4)},
+        --     {Cell.new(32, 2, 1), Cell.new(64, 2, 2), Cell.new(128, 2, 3), Cell.new(256, 2, 4)},
+        --     {Cell.new(512, 3, 1), Cell.new(1024, 3, 2), Cell.new(2048, 3, 3), Cell.new(4096, 3, 4)},
+        --     {Cell.new(8192, 4, 1), Cell.new(16384, 4, 2), nil, nil},
+        -- }
 
         return obj
     end,

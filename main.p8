@@ -7,6 +7,7 @@ __lua__
 -- main.p8
 
 function _init()
+    modify_palette()
     printh(" ")
 
     board = Board.new()
@@ -34,9 +35,15 @@ function _draw()
 end
 
 
-function create_board()
+function modify_palette()
+    pal(2, -1, 1)
+    pal(4, -2, 1)
+    pal(9, -8, 1)
+    pal(10, -14, 1)
+    pal(12, -15, 1)
+    pal(13, -13, 1)
+    pal(14, -5, 1)
 end
-
 
 
 
