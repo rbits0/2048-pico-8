@@ -102,18 +102,24 @@ Board = {
         end
 
 
+        local moved = false
         for row=1, max_row do
             for column=1, max_column do
                 local cell = self:get_cell_rotated(row, column, direction)
                 if cell != nil then
                     local action = self:move_cell(cell, row, column, direction)
+                    if not moved and action.type != ActionType.NONE then
+                        moved = true
+                    end
                     self:do_action(action)
                 end
             end
         end
         
         self:reset_cell_states()
-        self:add_random_cell()
+        if moved then
+            self:add_random_cell()
+        end
     end,
     
     
