@@ -41,38 +41,53 @@ Cell = {
 
 
     calculate_position = function(self)
-        local gap = 4
-        
-        self.x = (self.column - 1) * (24 + gap) + 10
-        self.y = (self.row - 1) * (24 + gap) + 10
+        self.x, self.y = calculate_position(self.row, self.column)
     end,
     
 
     draw = function(self)
+        draw_cell(self.x, self.y, self.value, 0)
+    end,
+}
+
+
+function calculate_position(row, column)
+    local gap = 2
+    local margin = 13
+    
+    local x = (column - 1) * (24 + gap) + margin
+    local y = (row - 1) * (24 + gap) + margin
+    
+    return x, y
+end
+
+
+function draw_cell(x, y, value, spr_offset)
+    if value != nil then
         -- set background colour palette
-        local color = CELL_COLORS[self.value]
+        local color = CELL_COLORS[value]
         if color == nil then
             pal(7, DEFAULT_COLOR)
         else
             pal(7, color)
         end
+    end
         
-        spr(1, self.x     , self.y     )
-        spr(5, self.x + 8 , self.y     )
-        spr(2, self.x + 16, self.y     )
-        spr(5, self.x     , self.y + 8 )
-        spr(5, self.x + 8 , self.y + 8 )
-        spr(5, self.x + 16, self.y + 8 )
-        spr(3, self.x     , self.y + 16)
-        spr(5, self.x + 8 , self.y + 16)
-        spr(4, self.x + 16, self.y + 16)
-        
-        local text = tostr(self.value)
-        local size = #text * 4
-        
-        print(self.value, self.x + (13 - size / 2), self.y + 9, 5)
-        
-        -- reset palette
-        pal(7, 7)
-    end,
-}
+    spr(1 + spr_offset , x     , y     )
+    spr(17 + spr_offset, x + 8 , y     )
+    spr(2 + spr_offset , x + 16, y     )
+    spr(20 + spr_offset, x     , y + 8 )
+    spr(5 + spr_offset , x + 8 , y + 8 )
+    spr(18 + spr_offset, x + 16, y + 8 )
+    spr(3 + spr_offset , x     , y + 16)
+    spr(19 + spr_offset, x + 8 , y + 16)
+    spr(4 + spr_offset , x + 16, y + 16)
+    
+    local text = tostr(value)
+    local size = #text * 4
+    
+    print(text, x + (13 - size / 2), y + 9, 5)
+    
+    -- reset palette
+    pal(7, 7)
+end
