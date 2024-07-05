@@ -56,11 +56,18 @@ Board = {
             obj:add_random_cell()
         end
 
+        -- obj.board = {
+        --     {nil, nil, Cell.new(2, 1, 3), Cell.new(2, 1, 4)},
+        --     {nil, nil, Cell.new(1024, 2, 3), nil},
+        --     {Cell.new(16, 3, 1), nil, Cell.new(1, 3, 3), nil},
+        --     {Cell.new(256, 4, 1), nil, nil, nil},
+        -- }
+        
         obj.board = {
-            {nil, nil, Cell.new(2, 1, 3), Cell.new(2, 1, 4)},
-            {nil, nil, Cell.new(1024, 2, 3), nil},
-            {Cell.new(16, 3, 1), nil, Cell.new(1, 3, 3), nil},
-            {Cell.new(256, 4, 1), nil, nil, nil},
+            {Cell.new(2, 1, 1), Cell.new(2, 1, 2), Cell.new(4, 1, 3), nil},
+            {nil, nil, nil, nil},
+            {nil, nil, nil, nil},
+            {nil, nil, nil, nil},
         }
 
         return obj
@@ -105,6 +112,7 @@ Board = {
             end
         end
         
+        self:add_random_cell()
     end,
     
     
