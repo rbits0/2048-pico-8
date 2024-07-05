@@ -32,6 +32,7 @@ function _draw()
     map(0, 0)
     
     board:draw()
+    draw_score()
 end
 
 
@@ -43,6 +44,11 @@ function modify_palette()
     pal(12, -15, 1)
     pal(13, -13, 1)
     pal(14, -5, 1)
+end
+
+
+function draw_score()
+    print(board.score, 4, 4, 7)
 end
 
 

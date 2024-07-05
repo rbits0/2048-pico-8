@@ -55,7 +55,7 @@ Board = {
         for i=1, NUM_START_TILES do
             obj:add_random_cell()
         end
-
+        
         -- obj.board = {
         --     {nil, nil, Cell.new(2, 1, 3), Cell.new(2, 1, 4)},
         --     {nil, nil, Cell.new(1024, 2, 3), nil},
@@ -69,6 +69,8 @@ Board = {
         --     {Cell.new(512, 3, 1), Cell.new(1024, 3, 2), Cell.new(2048, 3, 3), Cell.new(4096, 3, 4)},
         --     {Cell.new(8192, 4, 1), Cell.new(16384, 4, 2), nil, nil},
         -- }
+
+        obj.score = 0
 
         return obj
     end,
@@ -91,6 +93,8 @@ Board = {
     
 
     move = function(self, direction)
+        local score = 0
+
         local max_row
         local max_column
         if direction == LEFT or direction == RIGHT then
@@ -112,13 +116,17 @@ Board = {
                         moved = true
                     end
                     self:do_action(action)
+                    if action.type == ActionType.MERGE then
+                        score += action.merged_cell.value
+                    end
                 end
             end
         end
         
-        self:reset_cell_states()
         if moved then
+            self:reset_cell_states()
             self:add_random_cell()
+            self.score += score
         end
     end,
     
