@@ -112,6 +112,7 @@ Board = {
             end
         end
         
+        self:reset_cell_states()
         self:add_random_cell()
     end,
     
@@ -121,6 +122,7 @@ Board = {
         -- this function treats it as if it is moving left,
         -- get_cell_rotated takes care of different directions
 
+        -- attempt to merge
         -- find rightmost cell up to target cell
         local rightmost_cell = nil
         for i=1, column - 1 do
@@ -133,7 +135,11 @@ Board = {
         end
         
         -- if can merge
-        if rightmost_cell != nil and rightmost_cell.value == cell.value then
+        if rightmost_cell != nil and
+           -- cells can only merge once per turn
+           rightmost_cell.merged_this_turn == false and
+           rightmost_cell.value == cell.value
+        then
             return {
                 type = ActionType.MERGE,
                 moving_cell = cell,
@@ -192,6 +198,20 @@ Board = {
         elseif action.type == ActionType.MERGE then
             self.board[action.moving_cell.row][action.moving_cell.column] = nil
             action.merged_cell.value *= 2
+            action.merged_cell.merged_this_turn = true
+        end
+    end,
+    
+
+    -- set cell.merged_this_turn back to false for all cells
+    reset_cell_states = function(self)
+        for row=1, NUM_ROWS do
+            for column=1, NUM_COLUMNS do
+                local cell = self.board[row][column]
+                if cell != nil then
+                    cell.merged_this_turn = false
+                end
+            end
         end
     end,
     
