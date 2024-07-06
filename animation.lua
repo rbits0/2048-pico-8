@@ -32,10 +32,6 @@ CellMoveAnimation = {
     
     advance = function(self)
         if self.remaining_duration <= 0 then
-            return
-        end
-
-        if self.remaining_duration == 1 then
             -- set end value to exact end value so we don't have rounding errors
             self.cell.x = self.end_x
             self.cell.y = self.end_y
@@ -70,7 +66,7 @@ CellChangeAnimation = {
     end,
     
     advance = function(self)
-        if self.remaining_duration <= 1 then
+        if self.remaining_duration <= 0 then
             self.cell.value = self.end_value
         elseif self.remaining_duration == CELL_ANIMATION_DURATION then
             self.cell.value = self.start_value

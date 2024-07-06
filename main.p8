@@ -68,7 +68,7 @@ function run_animations()
     for i=1, #animations do
         local animation = animations[i]
 
-        if animation.remaining_duration > 0 then
+        if animation.remaining_duration >= 0 then
             animation:advance()
         else
             -- animations finished
