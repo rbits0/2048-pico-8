@@ -1,7 +1,7 @@
 -- animation.lua
 
 -- constants
-CELL_ANIMATION_DURATION = 10
+CELL_ANIMATION_DURATION = 5
 
 CellMoveAnimation = {
     new = function(cell, start_x, start_y, end_x, end_y, delete_on_finish) 
