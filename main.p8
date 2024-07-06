@@ -3,27 +3,36 @@ version 42
 __lua__
 #include cell.lua
 #include board.lua
+#include animation.lua
 
 -- main.p8
 
 function _init()
-    modify_palette()
     printh(" ")
+    modify_palette()
 
+    animations = {}
+    -- cells that are animating, but not on the board and will disappear when animation finished
+    animation_cells = {}
+    animation_running = false
     board = Board.new()
 end
 
 
 function _update()
-    if btnp(⬅️) then
-        board:move(LEFT)
-    elseif btnp(➡️) then
-        board:move(RIGHT)
-    elseif btnp(⬆️) then
-        board:move(UP)
-    elseif btnp(⬇️) then
-        board:move(DOWN)
+    if not animation_running then
+        if btnp(⬅️) then
+            board:move(LEFT)
+        elseif btnp(➡️) then
+            board:move(RIGHT)
+        elseif btnp(⬆️) then
+            board:move(UP)
+        elseif btnp(⬇️) then
+            board:move(DOWN)
+        end
     end
+    
+    run_animations()
 end
 
 
@@ -33,6 +42,7 @@ function _draw()
     
     draw_background()
     board:draw()
+    draw_animation_cells()
     draw_score()
 end
 
@@ -51,6 +61,31 @@ function modify_palette()
 end
 
 
+function run_animations()
+    local to_delete = {}
+
+    for i=1, #animations do
+        local animation = animations[i]
+
+        if animation.remaining_duration > 0 then
+            animation:advance()
+        else
+            -- animations finished
+            animation_running = false
+
+            add(to_delete, i)
+            if animation.delete_on_finish then
+                del(animation_cells, animation.cell)
+            end
+        end
+    end
+    
+    for i in all(to_delete) do
+        deli(animations, i)
+    end
+end
+
+
 function draw_background()
     rectfill(0, 0, 127, 127, 6)
 
@@ -59,6 +94,13 @@ function draw_background()
             local x, y = calculate_position(row, column)
             draw_cell(x, y, "", 32)
         end
+    end
+end
+
+
+function draw_animation_cells()
+    for cell in all(animation_cells) do
+        cell:draw()
     end
 end
 

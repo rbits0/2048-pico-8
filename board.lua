@@ -126,6 +126,7 @@ Board = {
         if moved then
             self:reset_cell_states()
             self:add_random_cell()
+            animation_running = true
             self.score += score
         end
     end,
@@ -204,15 +205,40 @@ Board = {
         if action.type == ActionType.NONE then
             return
         elseif action.type == ActionType.MOVE then
+            local start_x = action.moving_cell.x
+            local start_y = action.moving_cell.y
             self.board[action.moving_cell.row][action.moving_cell.column] = nil
             action.moving_cell.row = action.new_row
             action.moving_cell.column = action.new_column
             action.moving_cell:calculate_position()
             self.board[action.new_row][action.new_column] = action.moving_cell
+            
+            -- animate
+            add(animations, CellMoveAnimation.new(
+                action.moving_cell,
+                start_x,
+                start_y,
+                action.moving_cell.x,
+                action.moving_cell.y,
+                false
+            ))
         elseif action.type == ActionType.MERGE then
             self.board[action.moving_cell.row][action.moving_cell.column] = nil
             action.merged_cell.value *= 2
             action.merged_cell.merged_this_turn = true
+            
+            -- animate
+            add(animations, CellMoveAnimation.new(
+                action.moving_cell,
+                action.moving_cell.x,
+                action.moving_cell.y,
+                action.merged_cell.x,
+                action.merged_cell.y,
+                true
+            ))
+            -- add the moving cell to animation_cells,
+            -- since it has been removed from the board but still needs to be drawn
+            add(animation_cells, action.moving_cell)
         end
     end,
     
