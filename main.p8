@@ -49,11 +49,10 @@ end
 
 
 function modify_palette()
-    pal(2, -1, 1)
-    pal(4, -2, 1)
-    pal(9, -8, 1)
-    pal(10, -14, 1)
-    pal(12, -15, 1)
+    pal(4, -1, 1)
+    pal(9, -2, 1)
+    pal(10, -8, 1)
+    pal(12, -3, 1)
     pal(13, -13, 1)
     pal(14, -5, 1)
     

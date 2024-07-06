@@ -2,15 +2,17 @@
 
 
 -- colors: 7 15 -1 -2 8 -8 -14 -15 1 -13 3 -5 11 (or -6)
+-- colors: 7 15 -1 -2 8 -8 2 -3 1 -13 3 -5 11 (or -6)
 -- colours not used by tiles: 0, 5, and 6
+-- 4 9 10 12 13 14
 CELL_COLORS = {
     [2] = 7,
     [4] = 15,
-    [8] = 2,
-    [16] = 4,
+    [8] = 4,
+    [16] = 9,
     [32] = 8,
-    [64] = 9,
-    [128] = 10,
+    [64] = 10,
+    [128] = 2,
     [256] = 12,
     [512] = 1,
     [1024] = 13,
@@ -19,6 +21,9 @@ CELL_COLORS = {
     [8192] = 11,
 }
 DEFAULT_COLOR = 11
+TEXT_WHITE_NUMBERS = {64, 128, 256, 512, 1024, 2048}
+TEXT_WHITE = 7
+TEXT_BLACK = 5
 
 
 Cell = {
@@ -86,8 +91,16 @@ function draw_cell(x, y, value, spr_offset)
     local text = tostr(value)
     local size = #text * 4
     
-    print(text, x + (13 - size / 2), y + 9, 5)
+    local text_color = TEXT_BLACK
+    for num in all(TEXT_WHITE_NUMBERS) do
+        if value == num then
+            text_color = TEXT_WHITE
+            break
+        end
+    end
     
     -- reset palette
     pal(7, 7)
+
+    print(text, x + (13 - size / 2), y + 9, text_color)
 end
