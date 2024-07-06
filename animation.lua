@@ -13,6 +13,8 @@ CellMoveAnimation = {
 
         local obj = {
             cell = cell,
+            start_x = start_x,
+            start_y = start_y,
             end_x = end_x,
             end_y = end_y,
             x_step_size = x_step_size,
@@ -25,9 +27,6 @@ CellMoveAnimation = {
             return CellMoveAnimation[key]
         end })
         
-        cell.x = start_x
-        cell.y = start_y
-
         return obj
     end,
     
@@ -40,12 +39,15 @@ CellMoveAnimation = {
             -- set end value to exact end value so we don't have rounding errors
             self.cell.x = self.end_x
             self.cell.y = self.end_y
-            self.remaining_duration -= 1
-            return
+        elseif self.remaining_duration == CELL_ANIMATION_DURATION then
+            -- initialise start position
+            self.cell.x = self.start_x
+            self.cell.y = self.start_y
+        else
+            self.cell.x += self.x_step_size
+            self.cell.y += self.y_step_size
         end
-        
-        self.cell.x += self.x_step_size
-        self.cell.y += self.y_step_size
+
         self.remaining_duration -= 1
     end
 }
@@ -64,15 +66,14 @@ CellChangeAnimation = {
             return CellChangeAnimation[key]
         end })
         
-        cell.value = start_value
-        
         return obj
     end,
     
     advance = function(self)
         if self.remaining_duration <= 1 then
             self.cell.value = self.end_value
-            return
+        elseif self.remaining_duration == CELL_ANIMATION_DURATION then
+            self.cell.value = self.start_value
         end
         
         self.remaining_duration -= 1
