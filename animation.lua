@@ -49,3 +49,36 @@ CellMoveAnimation = {
         self.remaining_duration -= 1
     end
 }
+    
+
+CellChangeAnimation = {
+    new = function(cell, start_value, end_value) 
+        local obj = {
+            cell = cell,
+            start_value = start_value,
+            end_value = end_value,
+            remaining_duration = CELL_ANIMATION_DURATION,
+        }
+        
+        setmetatable(obj, { __index = function(table, key)
+            return CellChangeAnimation[key]
+        end })
+        
+        cell.value = start_value
+        
+        return obj
+    end,
+    
+    advance = function(self)
+        if self.remaining_duration <= 0 then
+            return
+        end
+
+        if self.remaining_duration == 1 then
+            self.cell.value = self.end_value
+            return
+        end
+        
+        self.remaining_duration -= 1
+    end
+}
