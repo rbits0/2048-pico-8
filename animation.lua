@@ -70,11 +70,7 @@ CellChangeAnimation = {
     end,
     
     advance = function(self)
-        if self.remaining_duration <= 0 then
-            return
-        end
-
-        if self.remaining_duration == 1 then
+        if self.remaining_duration <= 1 then
             self.cell.value = self.end_value
             return
         end

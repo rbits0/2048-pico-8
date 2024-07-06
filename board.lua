@@ -225,9 +225,7 @@ Board = {
                 false
             ))
         elseif action.type == ActionType.MERGE then
-            local start_value = action.merged_cell.value
             self.board[action.moving_cell.row][action.moving_cell.column] = nil
-            action.merged_cell.value *= 2
             action.merged_cell.merged_this_turn = true
             
             -- animate moving cell
@@ -246,8 +244,8 @@ Board = {
             -- animate merged cell
             add(animations, CellChangeAnimation.new(
                 action.merged_cell,
-                start_value,
-                action.merged_cell.value
+                action.merged_cell.value,
+                action.merged_cell.value * 2
             ))
         end
     end,
