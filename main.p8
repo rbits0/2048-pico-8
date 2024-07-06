@@ -81,8 +81,10 @@ function run_animations()
         end
     end
     
+    local del_offset = 0
     for i in all(to_delete) do
-        deli(animations, i)
+        deli(animations, i + del_offset)
+        del_offset -= 1
     end
     
     if not animation_running and board.to_add_cell then
