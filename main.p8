@@ -15,6 +15,7 @@ function _init()
     -- cells that are animating, but not on the board and will disappear when animation finished
     animation_cells = {}
     animation_running = false
+
     board = Board.new()
 end
 
@@ -82,6 +83,10 @@ function run_animations()
     
     for i in all(to_delete) do
         deli(animations, i)
+    end
+    
+    if not animation_running and board.to_add_cell then
+        board:add_random_cell()
     end
 end
 

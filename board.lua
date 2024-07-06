@@ -71,6 +71,7 @@ Board = {
         -- }
 
         obj.score = 0
+        obj.to_add_cell = false
 
         return obj
     end,
@@ -89,6 +90,7 @@ Board = {
         
         self.board[row][column] = Cell.new(value, row, column)
 
+        self.to_add_cell = false
     end,
     
 
@@ -125,7 +127,7 @@ Board = {
         
         if moved then
             self:reset_cell_states()
-            self:add_random_cell()
+            self.to_add_cell = true
             animation_running = true
             self.score += score
         end
