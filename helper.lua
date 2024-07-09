@@ -46,6 +46,7 @@ LongInt = {
                 return LongInt[key]
             end,
             __add = LongInt.__add,
+            __lt = LongInt.__lt,
         })
 
 
@@ -64,6 +65,17 @@ LongInt = {
         end
         
         return LongInt.new(small, large)
+    end,
+    
+    __lt = function(num1, num2)
+        if type(num1) == "number" then
+            return num2.large > 0 or num1 < num2.small
+        elseif type(num2) == "number" then
+            return num1.large < 0 and num1.small < num2
+        else
+            return (num1.large < num2.large) or
+                   (num1.large == num2.large and num1.small < num2.small)
+        end
     end,
 
     tostr = function(self)
