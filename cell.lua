@@ -100,7 +100,7 @@ function draw_cell(x, y, value, spr_offset)
         
         local text_color = TEXT_BLACK
         for num in all(TEXT_WHITE_NUMBERS) do
-            if value == num then
+            if value.small == num then
                 text_color = TEXT_WHITE
                 break
             end
