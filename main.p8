@@ -4,7 +4,9 @@ __lua__
 #include cell.lua
 #include board.lua
 #include animation.lua
+#include buttons.lua
 #include title_screen.lua
+#include settings_screen.lua
 
 -- main.p8
 
@@ -12,11 +14,12 @@ __lua__
 State = {
     TITLE_SCREEN = 1,
     GAME = 2,
+    SETTINGS_SCREEN = 3,
 }
 
 
 function _init()
-    state = State.TITLE_SCREEN
+    printh(" ")
     title_screen_init()
     -- game_init()
 end
@@ -27,21 +30,28 @@ function _update()
         title_screen_update()
     elseif state == State.GAME then
         game_update()
+    elseif state == State.SETTINGS_SCREEN then
+        settings_screen_update()
     end
 end
 
 
 function _draw()
+    cls()
+    
     if state == State.TITLE_SCREEN then
         title_screen_draw()
     elseif state == State.GAME then
         game_draw()
+    elseif state == State.SETTINGS_SCREEN then
+        settings_screen_draw()
     end
 end
 
 
 function game_init()
-    printh(" ")
+    state = State.GAME
+
     modify_palette()
 
     animations = {}
@@ -71,8 +81,6 @@ end
 
 
 function game_draw()
-    cls()
-    
     draw_background()
     board:draw()
     draw_animation_cells()
