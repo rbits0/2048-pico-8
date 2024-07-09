@@ -56,6 +56,9 @@ end
 
 function game_init()
     state = State.GAME
+    
+    -- disable key repeating
+    poke(0x5f5c, 255)
 
     modify_palette()
 

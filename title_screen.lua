@@ -2,6 +2,9 @@
 
 function title_screen_init()
     state = State.TITLE_SCREEN
+    
+    -- enable key repeating
+    poke(0x5f5c, 0)
 
     title_screen_palette()
 
