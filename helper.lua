@@ -47,6 +47,7 @@ LongInt = {
             end,
             __add = LongInt.__add,
             __lt = LongInt.__lt,
+            __shl = LongInt.__shl,
         })
 
 
@@ -76,6 +77,17 @@ LongInt = {
             return (num1.large < num2.large) or
                    (num1.large == num2.large and num1.small < num2.small)
         end
+    end,
+    
+    __shl = function(self)
+        self.large <<= 1        
+        
+        if self.small >= 5000 then
+            self.small -= 5000
+            self.large += 1
+        end
+        
+        self.small <<= 1
     end,
 
     tostr = function(self)
