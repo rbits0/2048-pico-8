@@ -49,6 +49,6 @@ function draw_buttons()
     local width = 6
     local x_pos = 40
 
-    draw_button("play", x_pos, 56, width, selected_button == 1)
-    draw_button("settings", x_pos, 76, width, selected_button == 2)
+    draw_button("play", x_pos, 62, width, selected_button == 1)
+    draw_button("settings", x_pos, 82, width, selected_button == 2)
 end

@@ -49,7 +49,7 @@ function settings_screen_draw()
     local width = 9
     local x_pos = 28
 
-    draw_button("move speed", x_pos, 50, width, selected_button == 1)
-    draw_button("reset highscore", x_pos, 70, width, selected_button == 2)
-    draw_button("back", x_pos, 90, width, selected_button == 3)
+    draw_button("move speed", x_pos, 56, width, selected_button == 1)
+    draw_button("reset highscore", x_pos, 76, width, selected_button == 2)
+    draw_button("back", x_pos, 96, width, selected_button == 3)
 end
