@@ -48,6 +48,7 @@ LongInt = {
             __add = LongInt.__add,
             __lt = LongInt.__lt,
             __shl = LongInt.__shl,
+            __eq = LongInt.__eq,
         })
 
 
@@ -77,6 +78,10 @@ LongInt = {
             return (num1.large < num2.large) or
                    (num1.large == num2.large and num1.small < num2.small)
         end
+    end,
+    
+    __eq = function(self, num)
+        return self.large == num.large and self.small == num.small
     end,
     
     __shl = function(self)
