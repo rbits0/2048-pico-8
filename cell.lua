@@ -34,7 +34,7 @@ Cell = {
             column = column,
             merged_this_turn = false,
         }
-
+        
         setmetatable(obj, { __index = function(table, key)
             return Cell[key]
         end })
@@ -68,9 +68,9 @@ end
 
 
 function draw_cell(x, y, value, spr_offset)
+    -- set background colour palette
     if value != nil then
-        -- set background colour palette
-        local color = CELL_COLORS[value]
+        local color = CELL_COLORS[value.small]
         if color == nil then
             pal(7, DEFAULT_COLOR)
         else
@@ -91,28 +91,21 @@ function draw_cell(x, y, value, spr_offset)
     spr(2 + spr_offset, x + 8 , y + 16, 1, 1, false, true)
     spr(1 + spr_offset, x + 16, y + 16, 1, 1, true, true)
 
-    -- spr(2 + spr_offset, x + 8 , y     )
-    -- spr(1 + spr_offset, x + 16, y     , 1, 1, true, false)
-    -- spr(20 + spr_offset, x     , y + 8 )
-    -- spr(5 + spr_offset, x + 8 , y + 8 )
-    -- spr(18 + spr_offset, x + 16, y + 8 )
-    -- spr(3 + spr_offset, x     , y + 16)
-    -- spr(19 + spr_offset, x + 8 , y + 16)
-    -- spr(4 + spr_offset, x + 16, y + 16)
-    
-    local text = tostr(value)
-    local size = #text * 4
-    
-    local text_color = TEXT_BLACK
-    for num in all(TEXT_WHITE_NUMBERS) do
-        if value == num then
-            text_color = TEXT_WHITE
-            break
-        end
-    end
-    
     -- reset palette
     pal(7, 7)
 
-    print(text, x + (13 - size / 2), y + 9, text_color)
+    if value != nil then
+        local text = value:tostr()
+        local size = #text * 4
+        
+        local text_color = TEXT_BLACK
+        for num in all(TEXT_WHITE_NUMBERS) do
+            if value == num then
+                text_color = TEXT_WHITE
+                break
+            end
+        end
+        
+        print(text, x + (13 - size / 2), y + 9, text_color)
+    end
 end

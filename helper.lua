@@ -77,6 +77,11 @@ LongInt = {
             small += int
         end
         
+        if type(small) != "number" then
+            large += small.large
+            small = small.small
+        end
+
         return LongInt.new(small, large)
     end,
     

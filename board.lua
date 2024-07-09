@@ -78,7 +78,7 @@ Board = {
     
 
     add_random_cell = function(self)
-        local value = rnd() < 0.9 and 2 or 4 
+        local value = rnd() < 0.9 and LongInt.new(2) or LongInt.new(4)
         
         -- ensure cell is empty
         local row = nil
@@ -246,7 +246,7 @@ Board = {
             add(animations, CellChangeAnimation.new(
                 action.merged_cell,
                 action.merged_cell.value,
-                action.merged_cell.value * 2
+                action.merged_cell.value << 1
             ))
         end
     end,

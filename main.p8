@@ -145,7 +145,7 @@ function draw_background()
     for row=1, NUM_ROWS do
         for column=1, NUM_COLUMNS do
             local x, y = cell_calculate_position(row, column)
-            draw_cell(x, y, "", 16)
+            draw_cell(x, y, nil, 16)
         end
     end
 end
