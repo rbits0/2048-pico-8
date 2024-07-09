@@ -55,15 +55,26 @@ LongInt = {
         return obj
     end,
 
-    __add = function(self, num)
-        local small = self.small
-        local large = self.large
+    __add = function(num1, num2)
+        -- int is not necessarily int, but long is always long
+        local int
+        local long
+        if type(num2) == "number" then
+            int = num2
+            long = num1
+        else
+            int = num1
+            long = num2
+        end
 
-        if will_overflow(small, num, self.limit) then
-            small = wrapping_int_add(small, num, self.limit)
+        local small = long.small
+        local large = long.large
+
+        if will_overflow(small, int, LongInt.limit) then
+            small += int
             large += 1
         else
-            small += num
+            small += int
         end
         
         return LongInt.new(small, large)
@@ -85,14 +96,17 @@ LongInt = {
     end,
     
     __shl = function(self)
-        self.large <<= 1        
+        local large = self.large << 1        
         
-        if self.small >= 5000 then
-            self.small -= 5000
-            self.large += 1
+        local small = self.small
+        if small >= 5000 then
+            small -= 5000
+            large += 1
         end
         
-        self.small <<= 1
+        small <<= 1
+        
+        return LongInt.new(small, large)
     end,
 
     tostr = function(self)
@@ -106,8 +120,4 @@ LongInt = {
 
 function will_overflow(num1, num2, limit)
     return (limit - num1 < num2)
-end
-
-function wrapping_int_add(num1, num2, limit)
-    return num2 - (limit - num1) - 1
 end
