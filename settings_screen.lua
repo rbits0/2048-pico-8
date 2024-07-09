@@ -40,8 +40,7 @@ function settings_screen_draw()
     rectfill(0, 0, 127, 127, 9)
     map(0, 0)
 
-    local highscore = dget(0)
-    print("highscore: "..highscore, 36, 40, 7)
+    print("highscore: "..highscore:tostr(), 36, 40, 7)
 
     local width = 9
     local x_pos = 28

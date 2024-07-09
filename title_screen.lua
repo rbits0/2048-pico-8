@@ -32,8 +32,7 @@ function title_screen_draw()
     rectfill(0, 0, 127, 127, 9)
     map(0, 0)
     
-    local highscore = dget(0)
-    print("highscore: "..highscore, 36, 40, 7)
+    print("highscore: "..highscore:tostr(), 36, 40, 7)
     
     draw_buttons()
 end

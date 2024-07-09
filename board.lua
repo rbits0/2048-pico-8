@@ -70,7 +70,7 @@ Board = {
         --     {Cell.new(8192, 4, 1), Cell.new(16384, 4, 2), nil, nil},
         -- }
 
-        obj.score = 0
+        obj.score = LongInt.new(0)
         obj.to_add_cell = false
 
         return obj
@@ -99,8 +99,6 @@ Board = {
     
 
     move = function(self, direction)
-        local score = 0
-
         local max_row
         local max_column
         if direction == LEFT or direction == RIGHT then
@@ -123,7 +121,7 @@ Board = {
                     end
                     self:do_action(action)
                     if action.type == ActionType.MERGE then
-                        score += action.merged_cell.value
+                        self.score += action.merged_cell.value
                     end
                 end
             end
@@ -133,7 +131,6 @@ Board = {
             self:reset_cell_states()
             self.to_add_cell = true
             animation_running = true
-            self.score += score
         end
     end,
     

@@ -23,6 +23,8 @@ function _init()
     printh(" ")
 
     cartdata("rbits_2048")
+    highscore = LongInt.new(dget(0), dget(1))
+    
     title_screen_init()
     -- game_init()
 end
@@ -157,7 +159,7 @@ end
 
 
 function draw_score()
-    print(board.score, 4, 4, 7)
+    print(board.score:tostr(), 4, 4, 7)
 end
 
 
@@ -168,8 +170,10 @@ end
 
 
 function save_highscore()
-    if board.score > dget(0) then
-        dset(0, board.score)
+    if board.score > highscore then
+        highscore = board.score
+        dset(0, board.score.small)
+        dset(1, board.score.large)
     end
 end
 
