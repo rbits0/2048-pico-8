@@ -24,6 +24,10 @@ function settings_screen_update()
     if btnp(🅾️) then
         if selected_button == 1 then
         elseif selected_button == 2 then
+            -- reset highscore
+            highscore = LongInt.new(0)
+            dset(0, 0)
+            dset(1, 0)
         elseif selected_button == 3 then
             title_screen_init()
         end
