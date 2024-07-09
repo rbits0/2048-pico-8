@@ -119,10 +119,10 @@ Board = {
                     if not moved and action.type != ActionType.NONE then
                         moved = true
                     end
-                    self:do_action(action)
                     if action.type == ActionType.MERGE then
-                        self.score += action.merged_cell.value
+                        self.score += action.merged_cell.value << 1
                     end
+                    self:do_action(action)
                 end
             end
         end
