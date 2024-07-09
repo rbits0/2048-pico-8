@@ -59,27 +59,28 @@ LongInt = {
         -- int is not necessarily int, but long is always long
         local int
         local long
-        if type(num2) == "number" then
-            int = num2
-            long = num1
-        else
+        if type(num1) == "number" then
             int = num1
             long = num2
+        else
+            int = num2
+            long = num1
+        end
+        
+        -- convert `int` to actually an int - move int.large to long.large
+        if type(int) != "number" then
+            long.large += int.large
+            int = int.small
         end
 
         local small = long.small
         local large = long.large
 
         if will_overflow(small, int, LongInt.limit) then
-            small += int
+            small = small + int - limit - 1
             large += 1
         else
             small += int
-        end
-        
-        if type(small) != "number" then
-            large += small.large
-            small = small.small
         end
 
         return LongInt.new(small, large)
