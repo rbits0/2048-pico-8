@@ -25,11 +25,3 @@ function draw_button(text, x, y, width, active)
     -- reset palette
     pal(4, 4)
 end
-
-
--- centers width within outer range
--- returns the start position
-function center(outer_start, outer_end, width)
-    local middle = (outer_start + outer_end) / 2
-    return flr(middle - (width / 2))
-end

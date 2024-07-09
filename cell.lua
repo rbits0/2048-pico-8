@@ -46,7 +46,7 @@ Cell = {
 
 
     calculate_position = function(self)
-        self.x, self.y = calculate_position(self.row, self.column)
+        self.x, self.y = cell_calculate_position(self.row, self.column)
     end,
     
 
@@ -56,7 +56,7 @@ Cell = {
 }
 
 
-function calculate_position(row, column)
+function cell_calculate_position(row, column)
     local gap = 2
     local margin = 13
     

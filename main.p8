@@ -1,6 +1,7 @@
 pico-8 cartridge // http://www.pico-8.com
 version 42
 __lua__
+#include helper.lua
 #include cell.lua
 #include board.lua
 #include animation.lua
@@ -105,11 +106,6 @@ function modify_palette()
 end
 
 
-function reset_palette()
-    pal({1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 0}, 1)
-end
-
-
 function run_animations()
     local to_delete = {}
 
@@ -146,7 +142,7 @@ function draw_background()
 
     for row=1, NUM_ROWS do
         for column=1, NUM_COLUMNS do
-            local x, y = calculate_position(row, column)
+            local x, y = cell_calculate_position(row, column)
             draw_cell(x, y, "", 16)
         end
     end
