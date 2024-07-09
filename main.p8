@@ -20,6 +20,8 @@ State = {
 
 function _init()
     printh(" ")
+
+    cartdata("rbits_2048")
     title_screen_init()
     -- game_init()
 end
@@ -160,6 +162,19 @@ end
 
 function draw_score()
     print(board.score, 4, 4, 7)
+end
+
+
+function game_end()
+    printh("GAME_OVER")
+    save_highscore()
+end
+
+
+function save_highscore()
+    if board.score > dget(0) then
+        dset(0, board.score)
+    end
 end
 
 

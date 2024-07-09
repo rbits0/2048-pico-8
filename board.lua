@@ -89,6 +89,10 @@ Board = {
         end
         
         self.board[row][column] = Cell.new(value, row, column)
+        
+        if not self:can_move() then
+            game_end()
+        end
 
         self.to_add_cell = false
     end,
@@ -261,6 +265,43 @@ Board = {
                 end
             end
         end
+    end,
+    
+
+    can_move = function(self)
+        return (
+            self:try_move(LEFT) or
+            self:try_move(RIGHT) or
+            self:try_move(UP) or
+            self:try_move(DOWN)
+        )
+    end,
+    
+
+    try_move = function(self, direction)
+        local max_row
+        local max_column
+        if direction == LEFT or direction == RIGHT then
+            max_row = NUM_ROWS
+            max_column = NUM_COLUMNS
+        else
+            max_row = NUM_COLUMNS
+            max_column = NUM_ROWS
+        end
+
+        for row=1, max_row do
+            for column=1, max_column do
+                local cell = self:get_cell_rotated(row, column, direction)
+                if cell != nil then
+                    local action = self:move_cell(cell, row, column, direction)
+                    if action.type != ActionType.NONE then
+                        return true
+                    end
+                end
+            end
+        end
+
+        return false
     end,
     
 
