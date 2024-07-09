@@ -77,7 +77,7 @@ LongInt = {
         local large = long.large
 
         if will_overflow(small, int, LongInt.limit) then
-            small = small + int - limit - 1
+            small = small + int - self.limit - 1
             large += 1
         else
             small += int
