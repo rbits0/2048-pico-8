@@ -6,15 +6,15 @@ function draw_button(text, x, y, width, active)
     end
 
     -- draw corners
-    spr(42, x, y)
-    spr(42, x     , y + 8 , 1, 1, false, true)
-    spr(42, x + (8 * (width - 1)), y     , 1, 1, true, false)
-    spr(42, x + (8 * (width - 1)), y + 8 , 1, 1, true, true)
+    spr(33, x, y)
+    spr(33, x     , y + 8 , 1, 1, false, true)
+    spr(33, x + (8 * (width - 1)), y     , 1, 1, true, false)
+    spr(33, x + (8 * (width - 1)), y + 8 , 1, 1, true, true)
     
     -- draw top and bottom edges
     for i=1, width - 2 do
-        spr(43, x + 8*i, y)
-        spr(43, x + 8*i , y + 8)
+        spr(34, x + 8*i, y)
+        spr(34, x + 8*i , y + 8)
     end
 
     local text_size = #text * 4

@@ -78,15 +78,27 @@ function draw_cell(x, y, value, spr_offset)
         end
     end
         
-    spr(1 + spr_offset , x     , y     )
-    spr(17 + spr_offset, x + 8 , y     )
-    spr(2 + spr_offset , x + 16, y     )
-    spr(20 + spr_offset, x     , y + 8 )
-    spr(5 + spr_offset , x + 8 , y + 8 )
-    spr(18 + spr_offset, x + 16, y + 8 )
-    spr(3 + spr_offset , x     , y + 16)
-    spr(19 + spr_offset, x + 8 , y + 16)
-    spr(4 + spr_offset , x + 16, y + 16)
+    -- 1st row
+    spr(1 + spr_offset, x     , y     , 1, 1, false, false)
+    spr(2 + spr_offset, x + 8 , y     , 1, 1, false, false)
+    spr(1 + spr_offset, x + 16, y     , 1, 1, true, false)
+    -- 2nd row
+    spr(3 + spr_offset, x     , y + 8 , 1, 1, false, false)
+    spr(4 + spr_offset, x + 8 , y + 8 , 1, 1, true, false)
+    spr(3 + spr_offset, x + 16, y + 8 , 1, 1, true, false)
+    -- 3rd row
+    spr(1 + spr_offset, x     , y + 16, 1, 1, false, true)
+    spr(2 + spr_offset, x + 8 , y + 16, 1, 1, false, true)
+    spr(1 + spr_offset, x + 16, y + 16, 1, 1, true, true)
+
+    -- spr(2 + spr_offset, x + 8 , y     )
+    -- spr(1 + spr_offset, x + 16, y     , 1, 1, true, false)
+    -- spr(20 + spr_offset, x     , y + 8 )
+    -- spr(5 + spr_offset, x + 8 , y + 8 )
+    -- spr(18 + spr_offset, x + 16, y + 8 )
+    -- spr(3 + spr_offset, x     , y + 16)
+    -- spr(19 + spr_offset, x + 8 , y + 16)
+    -- spr(4 + spr_offset, x + 16, y + 16)
     
     local text = tostr(value)
     local size = #text * 4
