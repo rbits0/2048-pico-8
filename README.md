@@ -7,4 +7,4 @@ for [PICO-8](https://www.lexaloffle.com/pico-8.php).
 ## Controls
 - WASD - Move
 - Space - Select
-- Backspace - Back
+- Shift - Back
