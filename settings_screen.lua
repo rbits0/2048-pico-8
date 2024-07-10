@@ -124,6 +124,7 @@ end
 
 function reset_highscore()
     highscore = LongInt.new(0)
+    cell_highscore = LongInt.new(0)
     dset(0, 0)
     dset(1, 0)
     dset(2, 0)
