@@ -18,8 +18,8 @@ function draw_button(text, x, y, width, active)
     end
 
     local text_size = #text * 4
-    local text_x = center(x, x + width * 8, text_size)
-    local text_y = center(y, y + 16, 4)
+    local text_x = center(x, x + width * 8 + 1, text_size)
+    local text_y = center(y, y + 16 + 1, 4)
     print(text, text_x, text_y, 5)
     
     -- reset palette

@@ -1,7 +1,7 @@
 -- helper.lua
 
 
--- centers width within outer range
+-- centers width within outer range (start inclusive, end non-inclusive)
 -- returns the start position
 function center(outer_start, outer_end, width)
     local middle = (outer_start + outer_end) / 2
