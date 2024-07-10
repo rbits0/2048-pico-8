@@ -37,6 +37,8 @@ function settings_screen_active_update()
                 move_speed == 10 and 5 or
                 10
             )
+            
+            dset(32, move_speed)
         elseif selected_button == 2 then
             confirmation_init()
         elseif selected_button == 3 then
