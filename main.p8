@@ -5,7 +5,7 @@ __lua__
 #include cell.lua
 #include board.lua
 #include animation.lua
-#include buttons.lua
+#include widgets.lua
 #include title_screen.lua
 #include settings_screen.lua
 #include game_over.lua
@@ -58,6 +58,7 @@ end
 
 function game_init()
     state = State.GAME
+    game_over = false
     
     -- disable key repeating
     poke(0x5f5c, 255)
@@ -74,6 +75,15 @@ end
 
 
 function game_update()
+    if not game_over then
+        game_running_update()
+    else
+        game_over_update()
+    end
+end
+
+
+function game_running_update()
     if not animation_running then
         if btnp(⬅️) then
             board:move(LEFT)
@@ -95,6 +105,10 @@ function game_draw()
     board:draw()
     draw_animation_cells()
     draw_score()
+    
+    if game_over then
+        game_over_draw()
+    end
 end
 
 

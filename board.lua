@@ -91,7 +91,7 @@ Board = {
         self.board[row][column] = Cell.new(value, row, column)
         
         if not self:can_move() then
-            game_end()
+            game_over_init()
         end
 
         self.to_add_cell = false
