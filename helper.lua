@@ -98,7 +98,11 @@ LongInt = {
     end,
     
     __eq = function(self, num)
-        return self.large == num.large and self.small == num.small
+        if type(num) == "number" then
+            return self.large == 0 and self.small == num
+        else
+            return self.large == num.large and self.small == num.small
+        end
     end,
     
     __shl = function(self)
