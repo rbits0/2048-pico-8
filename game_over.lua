@@ -37,7 +37,6 @@ end
 
 
 function game_over_draw()
-    -- draw_rounded_box(16, 40, 12, 6)
     draw_rounded_box(12, 40, 13, 6)
     
     print("\^w\^tgame over", 28, 44, 5)
