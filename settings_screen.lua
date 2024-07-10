@@ -73,7 +73,7 @@ function settings_screen_draw()
     draw_button("back", x_pos, 96, width, selected_button == 3)
     
     if confirmation then
-        confirmation_draw()
+        confirmation_draw(64)
     end
 end
 
@@ -109,12 +109,12 @@ function confirmation_update()
 end
 
 
-function confirmation_draw()
-    draw_rounded_box(24, 50, 10, 5, false)
+function confirmation_draw(y)
+    draw_rounded_box(24, y, 10, 5)
     
-    print("reset highscore", 35, 58)
+    print("reset highscore", 35, y + 8)
     
-    local button_y = 70
+    local button_y = y + 20
     local button_width = 4
     
     draw_button("confirm", 30, button_y, button_width, confirmation_selected_button == 1)
