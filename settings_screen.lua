@@ -31,6 +31,12 @@ function settings_screen_active_update()
     
     if btnp(🅾️) then
         if selected_button == 1 then
+            move_speed = (
+                move_speed == 3 and 1 or
+                move_speed == 5 and 3 or
+                move_speed == 10 and 5 or
+                10
+            )
         elseif selected_button == 2 then
             confirmation_init()
         elseif selected_button == 3 then
@@ -50,11 +56,19 @@ function settings_screen_draw()
     map(0, 0)
 
     draw_highscore()
+    
+    local move_speed_string = (
+        move_speed == 1 and "instant" or
+        move_speed == 3 and "fast" or
+        move_speed == 5 and "normal" or
+        move_speed == 10 and "slow" or
+        "error"
+    )
 
-    local width = 9
-    local x_pos = 28
+    local width = 10
+    local x_pos = 24
 
-    draw_button("move speed", x_pos, 56, width, selected_button == 1)
+    draw_button("move speed: "..move_speed_string, x_pos, 56, width, selected_button == 1)
     draw_button("reset highscore", x_pos, 76, width, selected_button == 2)
     draw_button("back", x_pos, 96, width, selected_button == 3)
     

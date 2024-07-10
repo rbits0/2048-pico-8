@@ -25,6 +25,12 @@ function _init()
 
     cartdata("rbits_2048")
     highscore = LongInt.new(dget(0), dget(1))
+    move_speed = dget(2)
+    if move_speed == 0 then
+        -- default move speed
+        move_speed = 5
+    end
+
     modify_palette()
     
     title_screen_init()
