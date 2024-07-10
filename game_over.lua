@@ -8,6 +8,8 @@ function game_over_init()
 
     save_highscore()
 
+    menuitem(1)
+
     selected_button = 1
 end
 

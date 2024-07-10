@@ -5,6 +5,8 @@ function title_screen_init()
     
     -- enable key repeating
     poke(0x5f5c, 0)
+    
+    menuitem(1)
 
     selected_button = 1
 end

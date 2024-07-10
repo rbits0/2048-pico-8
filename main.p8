@@ -80,6 +80,8 @@ function game_init()
     animation_running = false
 
     board = Board.new()
+
+    menuitem(1, "end game", game_over_init)
 end
 
 
