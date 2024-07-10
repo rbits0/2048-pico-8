@@ -3,3 +3,8 @@ This is an implementation of the game [2048](https://github.com/gabrielecirulli/
 for [PICO-8](https://www.lexaloffle.com/pico-8.php).
 
 ![Preview](thumbnail.png)
+
+## Controls
+- WASD - Move
+- Space - Select
+- Backspace - Back
