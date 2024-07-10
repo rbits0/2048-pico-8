@@ -307,8 +307,9 @@ Board = {
         
         for row=1, NUM_ROWS do
             for column=1, NUM_COLUMNS do
-                if self.board[row][column].value > max then
-                    max = self.board[row][column].value
+                local cell = self.board[row][column]
+                if cell != nil and cell.value > max then
+                    max = cell.value
                 end
             end
         end
