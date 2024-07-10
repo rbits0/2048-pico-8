@@ -3,6 +3,8 @@ version 42
 __lua__
 --2048
 --by rbits
+--repo: https://github.com/rbits0/2048-pico-8/
+--original game by Gabriele Cirulli (https://github.com/gabrielecirulli/2048)
 
 #include helper.lua
 #include cell.lua
