@@ -35,7 +35,6 @@ function _init()
     modify_palette()
     
     title_screen_init()
-    -- game_init()
 end
 
 
