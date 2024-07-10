@@ -3,8 +3,6 @@
 function settings_screen_init()
     state = State.SETTINGS_SCREEN
 
-    title_screen_palette()
-    
     selected_button = 1
 end
 
@@ -41,7 +39,7 @@ end
 
 
 function settings_screen_draw()
-    rectfill(0, 0, 127, 127, 9)
+    rectfill(0, 0, 127, 127, 6)
     map(0, 0)
 
     draw_highscore()

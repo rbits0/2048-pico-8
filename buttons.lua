@@ -2,7 +2,7 @@
 
 function draw_button(text, x, y, width, active)
     if active then
-        pal(4, 10)
+        pal(4, 9)
     end
 
     -- draw corners
@@ -20,7 +20,7 @@ function draw_button(text, x, y, width, active)
     local text_size = #text * 4
     local text_x = center(x, x + width * 8, text_size)
     local text_y = center(y, y + 16, 4)
-    print(text, text_x, text_y, 7)
+    print(text, text_x, text_y, 5)
     
     -- reset palette
     pal(4, 4)

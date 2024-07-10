@@ -6,8 +6,6 @@ function title_screen_init()
     -- enable key repeating
     poke(0x5f5c, 0)
 
-    title_screen_palette()
-
     selected_button = 1
 end
 
@@ -32,18 +30,11 @@ end
 
 
 function title_screen_draw()
-    rectfill(0, 0, 127, 127, 9)
+    rectfill(0, 0, 127, 127, 6)
     map(0, 0)
     
     draw_highscore()
     draw_buttons()
-end
-
-
-function title_screen_palette()
-    reset_palette()
-    pal(9, -10, 1)
-    pal(10, -12, 1)
 end
 
 
