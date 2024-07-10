@@ -25,11 +25,14 @@ function _init()
 
     cartdata("rbits_2048")
     highscore = LongInt.new(dget(0), dget(1))
-    move_speed = dget(2)
+    cell_highscore = LongInt.new(dget(3), dget(4))
+    move_speed = dget(32)
     if move_speed == 0 then
         -- default move speed
         move_speed = 5
     end
+
+    printh("cell highscore: "..cell_highscore:tostr())
 
     modify_palette()
     
@@ -199,6 +202,13 @@ function save_highscore()
         highscore = board.score
         dset(0, board.score.small)
         dset(1, board.score.large)
+    end
+        
+    local max_value = board:max_value()
+    if max_value > cell_highscore then
+        cell_highscore = max_value
+        dset(3, max_value.small)
+        dset(4, max_value.large)
     end
 end
 

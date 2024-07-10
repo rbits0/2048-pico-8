@@ -302,6 +302,21 @@ Board = {
     end,
     
 
+    max_value = function(self)
+        local max = LongInt.new(0)
+        
+        for row=1, NUM_ROWS do
+            for column=1, NUM_COLUMNS do
+                if self.board[row][column].value > max then
+                    max = self.board[row][column].value
+                end
+            end
+        end
+        
+        return max
+    end,
+    
+
     draw = function(self)
         for row=1, NUM_ROWS do
             for column=1, NUM_COLUMNS do
