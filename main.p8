@@ -32,8 +32,6 @@ function _init()
         move_speed = 5
     end
 
-    printh("cell highscore: "..cell_highscore:tostr())
-
     modify_palette()
     
     title_screen_init()
