@@ -35,8 +35,7 @@ function title_screen_draw()
     rectfill(0, 0, 127, 127, 9)
     map(0, 0)
     
-    print("highscore: "..highscore:tostr(), 36, 40, 7)
-    
+    draw_highscore()
     draw_buttons()
 end
 
@@ -54,4 +53,12 @@ function draw_buttons()
 
     draw_button("play", x_pos, 62, width, selected_button == 1)
     draw_button("settings", x_pos, 82, width, selected_button == 2)
+end
+
+
+function draw_highscore()
+    local text = "highscore: "..highscore:tostr()
+    local pos = center(0, 128, #text * 4)
+    print(text, pos, 40, 7)
+    
 end
