@@ -1,8 +1,8 @@
 const keyMappings = {
     "w": 38, // Up
-    "a": 39, // Left
-    "s": 40, // Down
-    "d": 41, // Right
+    "a": 37, // Left
+    "s": 39, // Down
+    "d": 40, // Right
     " ": 90, // Z (O)
     "Shift": 88, // X
     "Backspace": 88, // X
