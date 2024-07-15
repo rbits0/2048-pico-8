@@ -80,6 +80,8 @@ function game_init()
     -- cells that are animating, but not on the board and will disappear when animation finished
     animation_cells = {}
     animation_running = false
+    
+    button_buffer = nil
 
     board = Board.new()
 
@@ -98,7 +100,10 @@ end
 
 function game_running_update()
     if not animation_running then
-        if btnp(⬅️) then
+        if button_buffer != nil then
+            board:move(button_buffer)
+            button_buffer = nil
+        elseif btnp(⬅️) then
             board:move(LEFT)
         elseif btnp(➡️) then
             board:move(RIGHT)
@@ -106,6 +111,16 @@ function game_running_update()
             board:move(UP)
         elseif btnp(⬇️) then
             board:move(DOWN)
+        end
+    elseif button_buffer == nil then
+        if btnp(⬅️) then
+            button_buffer = LEFT
+        elseif btnp(➡️) then
+            button_buffer = RIGHT
+        elseif btnp(⬆️) then
+            button_buffer = UP
+        elseif btnp(⬇️) then
+            button_buffer = DOWN
         end
     end
     
