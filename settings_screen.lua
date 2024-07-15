@@ -24,8 +24,8 @@ function settings_screen_active_update()
         selected_button += 1
     end
     if selected_button < 1 then
-        selected_button = 3
-    elseif selected_button > 3 then
+        selected_button = 4
+    elseif selected_button > 4 then
         selected_button = 1
     end
     
@@ -42,6 +42,10 @@ function settings_screen_active_update()
         elseif selected_button == 2 then
             confirmation_init()
         elseif selected_button == 3 then
+            sound_on = not sound_on
+            
+            dset(33, sound_on and 0 or 1)
+        elseif selected_button == 4 then
             title_screen_init()
         end
     end
@@ -66,13 +70,16 @@ function settings_screen_draw()
         move_speed == 10 and "slow" or
         "error"
     )
+    
+    local sound_string = sound_on and "on" or "off"
 
     local width = 10
     local x_pos = 24
 
-    draw_button("move speed: "..move_speed_string, x_pos, 56, width, selected_button == 1)
-    draw_button("reset highscore", x_pos, 76, width, selected_button == 2)
-    draw_button("back", x_pos, 96, width, selected_button == 3)
+    draw_button("move speed: "..move_speed_string, x_pos, 51, width, selected_button == 1)
+    draw_button("reset highscore", x_pos, 70, width, selected_button == 2)
+    draw_button("sound: "..sound_string, x_pos, 89, width, selected_button == 3)
+    draw_button("back", x_pos, 108, width, selected_button == 4)
     
     if confirmation then
         confirmation_draw(64)

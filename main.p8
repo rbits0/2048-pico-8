@@ -29,13 +29,18 @@ function _init()
     printh(" ")
 
     cartdata("rbits_2048")
+
     highscore = LongInt.new(dget(0), dget(1))
     cell_highscore = LongInt.new(dget(3), dget(4))
+
     move_speed = dget(32)
     if move_speed == 0 then
         -- default move speed
         move_speed = 5
     end
+    
+    -- in cartdata, 0 means sound on and 1 means sound off
+    sound_on = dget(33) == 0 and true or false
 
     modify_palette()
     

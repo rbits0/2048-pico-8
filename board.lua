@@ -118,9 +118,13 @@ Board = {
             self.to_add_cell = true
             animation_running = true
 
-            sfx(1)
+            if sound_on then
+                sfx(1)
+            end
         else
-            sfx(0)
+            if sound_on then
+                sfx(0)
+            end
         end
     end,
     

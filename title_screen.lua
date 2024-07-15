@@ -52,9 +52,9 @@ end
 function draw_highscore()
     local highscore_text = "highscore: "..highscore:tostr()
     local highscore_pos = center(0, 128, #highscore_text * 4)
-    print(highscore_text, highscore_pos, 40, 7)
+    print(highscore_text, highscore_pos, 35, 7)
     
     local cell_highscore_text = "largest number: "..cell_highscore:tostr()
     local cell_highscore_pos = center(0, 128, #cell_highscore_text * 4)
-    print(cell_highscore_text, cell_highscore_pos, 48, 7)
+    print(cell_highscore_text, cell_highscore_pos, 43, 7)
 end
