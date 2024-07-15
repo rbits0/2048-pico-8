@@ -117,6 +117,10 @@ Board = {
             self:reset_cell_states()
             self.to_add_cell = true
             animation_running = true
+
+            sfx(1)
+        else
+            sfx(0)
         end
     end,
     
