@@ -4,7 +4,7 @@ for [PICO-8](https://www.lexaloffle.com/pico-8.php).
 
 ![Preview](thumbnail.png)
 
-## Controls
-- WASD - Move
+## Controls (Web Version)
+- WASD or arrow keys - Move
 - Space - Select
-- Shift - Back
+- Backspace - Back
