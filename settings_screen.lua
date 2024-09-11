@@ -103,12 +103,11 @@ function confirmation_update()
     end
     
     if btnp(🅾️) then
-        if confirmation_selected_button == 1 then
+        if confirmation_selected_button == 2 then
             reset_highscore()
-            confirmation = false
-        elseif confirmation_selected_button == 2 then
-            confirmation = false
         end
+
+        confirmation = false
     end
     
     if btnp(❎) then
@@ -126,8 +125,8 @@ function confirmation_draw(y)
     local button_y = y + 20
     local button_width = 4
     
-    draw_button("confirm", 30, button_y, button_width, confirmation_selected_button == 1)
-    draw_button("cancel", 66, button_y, button_width, confirmation_selected_button == 2)
+    draw_button("cancel", 30, button_y, button_width, confirmation_selected_button == 1)
+    draw_button("confirm", 66, button_y, button_width, confirmation_selected_button == 2)
 end
 
 
